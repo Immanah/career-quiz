@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tech Career Quiz</title>
+
+        <!-- Add Firebase SDK -->
+        <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+
+        <!-- Minimalist UI Styling -->
+        <style>
+            /* Minimalist style */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Helvetica Neue", sans-serif;
+                background-color: #f7f7f7;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                color: #333;
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+                color: #4a4a4a;
+                margin-bottom: 1.5rem;
+            }
+
+            p {
+                font-size: 1.2rem;
+                margin-bottom: 2rem;
+                color: #6b6b6b;
+                text-align: center;
+                max-width: 600px;
+            }
+
+            form {
+                background-color: #fff;
+                padding: 1.5rem;
+                border-radius: 12px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                margin-bottom: 2rem;
+                width: 100%;
+                max-width: 400px;
+            }
+
+            input {
+                width: 100%;
+                padding: 1rem;
+                margin-bottom: 1rem;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                font-size: 1rem;
+            }
+
+            button {
+                background-color: #4a90e2;
+                color: white;
+                border: none;
+                padding: 1rem 2rem;
+                font-size: 1rem;
+                border-radius: 25px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            button:hover {
+                background-color: #357abd;
+            }
+
+            button:focus {
+                outline: none;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            }
+
+            #logout-btn {
+                margin-top: 2rem;
+            }
+
+            footer {
+                margin-top: 2rem;
+                font-size: 0.9rem;
+                color: #9b9b9b;
+            }
+
+            /* Mobile Responsive */
+            @media (max-width: 768px) {
+                h1 {
+                    font-size: 2rem;
+                }
+
+                p {
+                    font-size: 1rem;
+                }
+
+                input,
+                button {
+                    padding: 0.75rem 1.5rem;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>Welcome to the Tech Career Quiz!</h1>
+        <p>
+            Your personalized journey towards finding your ideal tech career
+            starts here.
+        </p>
+
+        <!-- Registration Form -->
+        <form id="register-form">
+            <h2>Register</h2>
+            <input
+                type="email"
+                id="register-email"
+                placeholder="Email"
+                required
+            />
+            <input
+                type="password"
+                id="register-password"
+                placeholder="Password"
+                required
+            />
+            <input type="submit" value="Register" />
+        </form>
+
+        <!-- Login Form -->
+        <form id="login-form">
+            <h2>Login</h2>
+            <input type="email" id="login-email" placeholder="Email" required />
+            <input
+                type="password"
+                id="login-password"
+                placeholder="Password"
+                required
+            />
+            <input type="submit" value="Login" />
+        </form>
+
+        <!-- Logout Button -->
+        <button id="logout-btn" style="display: none">Logout</button>
+
+        <footer>
+            <p>© 2024 Tech Career Quiz. All rights reserved.</p>
+        </footer>
+
+        <script>
+            // Your Firebase configuration
+            const firebaseConfig = {
+                apiKey: "AIzaSyA0CPme5etkuxOh--NcCMXuW4cPuD4nTmQ",
+                authDomain: "tech-career-quiz.firebaseapp.com",
+                projectId: "tech-career-quiz",
+                storageBucket: "tech-career-quiz.appspot.com",
+                messagingSenderId: "534835946395",
+                appId: "1:534835946395:web:1d87cb9e02c8cdc465773e",
+                measurementId: "G-3RH1VNZVXY",
+            };
+
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+
+            // Get elements
+            const registerForm = document.getElementById("register-form");
+            const loginForm = document.getElementById("login-form");
+            const logoutBtn = document.getElementById("logout-btn");
+
+            // Register new users
+            registerForm.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const email = document.getElementById("register-email").value;
+                const password =
+                    document.getElementById("register-password").value;
+
+                firebase
+                    .auth()
+                    .createUserWithEmailAndPassword(email, password)
+                    .then((userCredential) => {
+                        alert("Registration successful!");
+                        registerForm.reset();
+                    })
+                    .catch((error) => {
+                        alert(error.message);
+                    });
+            });
+
+            // Log in users
+            loginForm.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const email = document.getElementById("login-email").value;
+                const password =
+                    document.getElementById("login-password").value;
+
+                firebase
+                    .auth()
+                    .signInWithEmailAndPassword(email, password)
+                    .then((userCredential) => {
+                        alert("Login successful!");
+                        logoutBtn.style.display = "block";
+                        loginForm.reset();
+                    })
+                    .catch((error) => {
+                        alert(error.message);
+                    });
+            });
+
+            // Log out users
+            logoutBtn.addEventListener("click", () => {
+                firebase
+                    .auth()
+                    .signOut()
+                    .then(() => {
+                        alert("Logged out successfully!");
+                        logoutBtn.style.display = "none";
+                    })
+                    .catch((error) => {
+                        alert(error.message);
+                    });
+            });
+
+            // Monitor authentication state
+            firebase.auth().onAuthStateChanged((user) => {
+                if (user) {
+                    logoutBtn.style.display = "block";
+                } else {
+                    logoutBtn.style.display = "none";
+                }
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tech Career Quiz</title>
+        <style>
+            body {
+                font-family: "Arial", sans-serif;
+                margin: 0;
+                padding: 20px;
+                background: linear-gradient(to bottom right, #e0eafc, #cfdef3);
+            }
+
+            h1 {
+                color: #2c3e50;
+                text-align: center;
+                margin-bottom: 30px;
+            }
+
+            h2 {
+                color: #34495e;
+                margin: 20px 0 10px;
+            }
+
+            form {
+                background: #fff;
+                padding: 30px;
+                border-radius: 10px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            label {
+                margin: 15px 0;
+                display: block;
+                font-weight: bold;
+            }
+
+            input[type="checkbox"],
+            input[type="radio"] {
+                margin-right: 10px;
+            }
+
+            input[type="submit"] {
+                background: #007bff;
+                color: #fff;
+                border: none;
+                padding: 15px 30px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+                transition: background 0.3s ease;
+                display: block;
+                margin: 20px auto;
+            }
+
+            input[type="submit"]:hover {
+                background: #0056b3;
+            }
+
+            #result {
+                margin-top: 20px;
+                background: #fff;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+                max-width: 600px;
+                margin: 20px auto;
+                display: none;
+            }
+
+            ul {
+                list-style-type: none;
+                padding: 0;
+            }
+
+            ul li {
+                background: #f9f9f9;
+                margin: 10px 0;
+                padding: 10px;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+        </style>
+    </head>
+    <body>
+        <script src="firebase.js"></script>
+
+        <h1>Tech Career Quiz</h1>
+
+        <form id="quiz-form" action="/submit-quiz" method="POST">
+            <h2>Section 1: Personal Interests (Non-Tech Related)</h2>
+            <label
+                >1. Which of the following activities do you enjoy most outside
+                of technology? (Select all that apply)</label
+            >
+            <input
+                type="checkbox"
+                name="nonTechInterests"
+                value="Solving puzzles or brain games"
+            />
+            Solving puzzles or brain games<br />
+            <input
+                type="checkbox"
+                name="nonTechInterests"
+                value="Writing or creative storytelling"
+            />
+            Writing or creative storytelling<br />
+            <input
+                type="checkbox"
+                name="nonTechInterests"
+                value="Drawing or designing"
+            />
+            Drawing or designing<br />
+            <input
+                type="checkbox"
+                name="nonTechInterests"
+                value="Playing strategy games"
+            />
+            Playing strategy games<br />
+            <input
+                type="checkbox"
+                name="nonTechInterests"
+                value="Teaching or mentoring others"
+            />
+            Teaching or mentoring others<br />
+            <input
+                type="checkbox"
+                name="nonTechInterests"
+                value="Working with your hands"
+            />
+            Working with your hands<br />
+            <input
+                type="checkbox"
+                name="nonTechInterests"
+                value="Problem-solving in daily life"
+            />
+            Problem-solving in daily life<br />
+            <input
+                type="text"
+                name="nonTechInterestsOther"
+                placeholder="Other"
+            /><br /><br />
+
+            <label
+                >2. Which subjects did you enjoy most in school? (Select all
+                that apply)</label
+            >
+            <input type="checkbox" name="favSubjects" value="Mathematics" />
+            Mathematics<br />
+            <input type="checkbox" name="favSubjects" value="Science" />
+            Science<br />
+            <input type="checkbox" name="favSubjects" value="Art or design" />
+            Art or design<br />
+            <input type="checkbox" name="favSubjects" value="Literature" />
+            Literature<br />
+            <input
+                type="checkbox"
+                name="favSubjects"
+                value="Social studies or history"
+            />
+            Social studies or history<br />
+            <input
+                type="checkbox"
+                name="favSubjects"
+                value="Business or economics"
+            />
+            Business or economics<br />
+            <input
+                type="text"
+                name="favSubjectsOther"
+                placeholder="Other"
+            /><br /><br />
+
+            <label
+                >3. What type of activities do you enjoy in your free time?
+                (Select all that apply)</label
+            >
+            <input
+                type="checkbox"
+                name="freeTimeActivities"
+                value="Reading books or articles"
+            />
+            Reading books or articles<br />
+            <input
+                type="checkbox"
+                name="freeTimeActivities"
+                value="Watching videos"
+            />
+            Watching videos<br />
+            <input
+                type="checkbox"
+                name="freeTimeActivities"
+                value="Playing video games"
+            />
+            Playing video games<br />
+            <input
+                type="checkbox"
+                name="freeTimeActivities"
+                value="Participating in physical activities"
+            />
+            Participating in physical activities<br />
+            <input
+                type="checkbox"
+                name="freeTimeActivities"
+                value="Engaging in creative hobbies"
+            />
+            Engaging in creative hobbies<br />
+            <input
+                type="checkbox"
+                name="freeTimeActivities"
+                value="Socializing and discussing ideas with others"
+            />
+            Socializing and discussing ideas with others<br /><br />
+            <h2>Section 2: Tech Interests</h2>
+            <label
+                >4. Which areas of technology interest you the most? (Select all
+                that apply)</label
+            >
+            <input
+                type="checkbox"
+                name="techInterests"
+                value="Software Development"
+            />
+            Software Development<br />
+            <input type="checkbox" name="techInterests" value="Data Analysis" />
+            Data Analysis<br />
+            <input type="checkbox" name="techInterests" value="Cybersecurity" />
+            Cybersecurity<br />
+            <input
+                type="checkbox"
+                name="techInterests"
+                value="Web Development"
+            />
+            Web Development<br />
+            <input
+                type="checkbox"
+                name="techInterests"
+                value="Game Development"
+            />
+            Game Development<br />
+            <input type="checkbox" name="techInterests" value="Networking" />
+            Networking<br />
+            <input
+                type="checkbox"
+                name="techInterests"
+                value="Artificial Intelligence"
+            />
+            Artificial Intelligence<br />
+            <input
+                type="text"
+                name="techInterestsOther"
+                placeholder="Other"
+            /><br /><br />
+
+            <label
+                >5. How often do you work on improving your tech skills?</label
+            >
+            <input type="radio" name="improveSkills" value="Every day" /> Every
+            day<br />
+            <input
+                type="radio"
+                name="improveSkills"
+                value="A few times a week"
+            />
+            A few times a week<br />
+            <input type="radio" name="improveSkills" value="Once a week" /> Once
+            a week<br />
+            <input type="radio" name="improveSkills" value="Rarely" />
+            Rarely<br /><br />
+
+            <label
+                >6. How much time do you usually dedicate to learning tech
+                skills?</label
+            >
+            <input type="radio" name="learningTime" value="Less than 1 hour" />
+            Less than 1 hour<br />
+            <input type="radio" name="learningTime" value="1-2 hours" /> 1-2
+            hours<br />
+            <input type="radio" name="learningTime" value="2-3 hours" /> 2-3
+            hours<br />
+            <input type="radio" name="learningTime" value="More than 3 hours" />
+            More than 3 hours<br /><br />
+
+            <label>7. What is your preferred learning style?</label>
+            <input type="radio" name="learningStyle" value="Visual" />
+            Visual<br />
+            <input type="radio" name="learningStyle" value="Auditory" />
+            Auditory<br />
+            <input type="radio" name="learningStyle" value="Kinesthetic" />
+            Kinesthetic<br />
+            <input type="radio" name="learningStyle" value="Reading/Writing" />
+            Reading/Writing<br /><br />
+
+            <h2>Section 3: Career Aspirations</h2>
+            <label>8. What kind of work environment do you prefer?</label>
+            <input type="radio" name="workEnvironment" value="Remote" />
+            Remote<br />
+            <input type="radio" name="workEnvironment" value="In-office" />
+            In-office<br />
+            <input type="radio" name="workEnvironment" value="Hybrid" />
+            Hybrid<br /><br />
+
+            <label
+                >9. How do you feel about working in a team versus working
+                independently?</label
+            >
+            <input
+                type="radio"
+                name="teamPreference"
+                value="I prefer teamwork"
+            />
+            I prefer teamwork<br />
+            <input
+                type="radio"
+                name="teamPreference"
+                value="I prefer working independently"
+            />
+            I prefer working independently<br />
+            <input type="radio" name="teamPreference" value="I am flexible" /> I
+            am flexible<br /><br />
+
+            <label>10. What motivates you the most in your career?</label>
+            <input
+                type="radio"
+                name="careerMotivation"
+                value="Financial rewards"
+            />
+            Financial rewards<br />
+            <input
+                type="radio"
+                name="careerMotivation"
+                value="Job satisfaction"
+            />
+            Job satisfaction<br />
+            <input
+                type="radio"
+                name="careerMotivation"
+                value="Impact on society"
+            />
+            Impact on society<br />
+            <input
+                type="radio"
+                name="careerMotivation"
+                value="Opportunities for growth"
+            />
+            Opportunities for growth<br /><br />
+            <!-- Add other sections as necessary -->
+
+            <input type="submit" value="Submit Quiz" />
+        </form>
+
+        <h2>Feedback</h2>
+        <form id="feedback-form">
+            <label for="feedback">Your Feedback:</label><br />
+            <textarea id="feedback" rows="4" required></textarea><br />
+            <input type="submit" value="Submit Feedback" />
+        </form>
+        <div id="feedback-message"></div>
+
+        <script>
+            document
+                .getElementById("feedback-form")
+                .addEventListener("submit", function (event) {
+                    event.preventDefault();
+                    const feedbackInput =
+                        document.getElementById("feedback").value;
+                    // Here you can implement the logic to send the feedback to your server or store it
+                    console.log("Feedback submitted:", feedbackInput);
+                    document.getElementById("feedback-message").textContent =
+                        "Thank you for your feedback!";
+
+                    // Clear the feedback input
+                    document.getElementById("feedback").value = "";
+                });
+        </script>
+
+        <div id="result"></div>
+
+        <script>
+            document
+                .getElementById("quiz-form")
+                .addEventListener("submit", function (event) {
+                    event.preventDefault();
+                    const form = document.forms["quiz-form"];
+
+                    // Collecting selected answers efficiently using FormData
+                    const formData = new FormData(form);
+
+                    // Collect single-choice answers
+                    const improveSkills = formData.get("improveSkills");
+                    const learningTime = formData.get("learningTime");
+                    const learningStyle = formData.get("learningStyle");
+                    const workEnvironment = formData.get("workEnvironment");
+                    const teamPreference = formData.get("teamPreference");
+                    const careerMotivation = formData.get("careerMotivation");
+
+                    // Collect multiple-choice answers as arrays
+                    const techInterests = formData.getAll("techInterests");
+                    const nonTechInterests =
+                        formData.getAll("nonTechInterests");
+                    const freeTimeActivities =
+                        formData.getAll("freeTimeActivities");
+
+                    let feedbackMessage =
+                        "<h2>Your Results:</h2><p>Based on your answers:</p><ul>";
+
+                    // Logic to provide feedback based on selections
+                    if (improveSkills && learningTime) {
+                        if (
+                            improveSkills === "Every day" &&
+                            learningTime === "1-2 hours"
+                        ) {
+                            feedbackMessage +=
+                                "<li>You may be suited for software development and data analysis.</li>";
+                        } else if (
+                            improveSkills === "A few times a week" &&
+                            learningTime === "2-3 hours"
+                        ) {
+                            feedbackMessage +=
+                                "<li>Consider exploring data analysis and cybersecurity.</li>";
+                        } else if (
+                            improveSkills === "Once a week" &&
+                            learningTime === "Less than 1 hour"
+                        ) {
+                            feedbackMessage +=
+                                "<li>Start with basic tech concepts such as programming or web development.</li>";
+                        } else {
+                            feedbackMessage +=
+                                "<li>Explore different fields to find your fit in tech.</li>";
+                        }
+                    } else {
+                        feedbackMessage +=
+                            "<li>Please answer all questions before submitting!</li>";
+                    }
+
+                    // Additional feedback based on selected interests and learning style
+                    if (techInterests.length > 0) {
+                        feedbackMessage += `<li>Your tech interests include: ${techInterests.join(", ")}. Consider focusing on these areas for further exploration.</li>`;
+                    }
+
+                    if (learningStyle) {
+                        feedbackMessage += `<li>You are a ${learningStyle} learner, so seek out resources tailored to that learning style.</li>`;
+                    }
+
+                    if (workEnvironment) {
+                        feedbackMessage += `<li>You prefer a ${workEnvironment} work environment.</li>`;
+                    }
+
+                    if (teamPreference) {
+                        feedbackMessage += `<li>You prefer ${teamPreference} work style.</li>`;
+                    }
+
+                    if (careerMotivation) {
+                        feedbackMessage += `<li>Your primary career motivation is ${careerMotivation}.</li>`;
+                    }
+
+                    feedbackMessage += "</ul>";
+
+                    // Display the feedback message
+                    document.getElementById("result").innerHTML =
+                        feedbackMessage;
+                    document.getElementById("result").style.display = "block";
+                });
+        </script>
+    </body>
+</html>

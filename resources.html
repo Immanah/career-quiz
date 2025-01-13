@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Resources</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;600&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: "Raleway", sans-serif;
+                background: linear-gradient(135deg, #e9effb, #f7faff);
+                color: #333;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+            }
+            h1 {
+                font-size: 2.5rem;
+                font-weight: 600;
+                color: #333;
+                margin-bottom: 20px;
+            }
+            p {
+                font-size: 1.2rem;
+                font-weight: 300;
+                color: #555;
+                max-width: 700px;
+                text-align: center;
+                margin-bottom: 40px;
+            }
+            .resources-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 2rem;
+                padding: 0 20px;
+            }
+            .resource-item {
+                background: #fff;
+                border-radius: 15px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+                padding: 20px;
+                width: 250px;
+                text-align: center;
+                transition: transform 0.3s ease;
+            }
+            .resource-item:hover {
+                transform: translateY(-10px);
+            }
+            .resource-title {
+                font-size: 1.5rem;
+                font-weight: 600;
+                margin-bottom: 15px;
+                color: #333;
+            }
+            .resource-description {
+                font-size: 1rem;
+                color: #666;
+                margin-bottom: 20px;
+            }
+            .resource-link {
+                background-color: #6c63ff;
+                color: #fff;
+                padding: 10px 20px;
+                border-radius: 30px;
+                text-decoration: none;
+                font-weight: 500;
+                transition: background-color 0.3s ease;
+            }
+            .resource-link:hover {
+                background-color: #594aff;
+            }
+            footer {
+                position: absolute;
+                bottom: 20px;
+                font-size: 0.9rem;
+                color: #888;
+            }
+        </style>
+    </head>
+    <body>
+        <script src="firebase.js"></script>
+
+        <h1>Explore Resources</h1>
+        <p>
+            Find helpful tools, guides, and platforms to assist you in your tech
+            journey. These curated resources are designed to help you reach your
+            goals.
+        </p>
+
+        <div class="resources-container">
+            <div class="resource-item">
+                <div class="resource-title">GitHub</div>
+                <div class="resource-description">
+                    Explore and collaborate on open-source projects.
+                </div>
+                <a
+                    href="https://github.com"
+                    class="resource-link"
+                    target="_blank"
+                    >Visit GitHub</a
+                >
+            </div>
+            <div class="resource-item">
+                <div class="resource-title">Codecademy</div>
+                <div class="resource-description">
+                    Learn to code interactively with guided lessons.
+                </div>
+                <a
+                    href="https://www.codecademy.com"
+                    class="resource-link"
+                    target="_blank"
+                    >Visit Codecademy</a
+                >
+            </div>
+            <div class="resource-item">
+                <div class="resource-title">FreeCodeCamp</div>
+                <div class="resource-description">
+                    Get hands-on coding practice with a community of learners.
+                </div>
+                <a
+                    href="https://www.freecodecamp.org"
+                    class="resource-link"
+                    target="_blank"
+                    >Visit FreeCodeCamp</a
+                >
+            </div>
+            <div class="resource-item">
+                <div class="resource-title">W3Schools</div>
+                <div class="resource-description">
+                    Learn web development with detailed tutorials and
+                    references.
+                </div>
+                <a
+                    href="https://www.w3schools.com"
+                    class="resource-link"
+                    target="_blank"
+                    >Visit W3Schools</a
+                >
+            </div>
+        </div>
+
+        <footer>Designed to inspire your tech journey © 2024</footer>
+    </body>
+</html>
